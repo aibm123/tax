@@ -53,20 +53,15 @@
             <form id="login-form" class="mt-8 space-y-6">
                 <div>
                     <label for="email" class="text-sm font-medium">Email</label>
-                    <input id="email" type="email" required class="mt-1 w-full p-3 border rounded-lg dark:bg-gray-700 dark:border-gray-600" value="user1@company.com">
+                    <input id="email" type="email" required class="mt-1 w-full p-3 border rounded-lg dark:bg-gray-700 dark:border-gray-600" value="user1@gmail.com">
                 </div>
                 <div>
                     <label for="password" class="text-sm font-medium">Mật khẩu</label>
-                    <input id="password" type="password" required class="mt-1 w-full p-3 border rounded-lg dark:bg-gray-700 dark:border-gray-600" value="user1">
+                    <input id="password" type="password" required class="mt-1 w-full p-3 border rounded-lg dark:bg-gray-700 dark:border-gray-600" value="123">
                 </div>
                 <div id="login-error" class="text-red-500 text-sm text-center"></div>
                 <button type="submit" class="w-full bg-indigo-600 text-white font-semibold py-3 rounded-lg hover:bg-indigo-700">Đăng nhập</button>
             </form>
-            <div class="mt-4 text-xs text-gray-400 text-center">
-                <p>Admin: admin@tax.ai / admin</p>
-                <p>User 1: user1@company.com / user1</p>
-                <p>User 2: user2@company.com / user2</p>
-            </div>
         </div>
     </div>
 
@@ -82,8 +77,7 @@
             </div>
             <p class="px-6 text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Quy trình làm việc</p>
             <ul class="flex flex-col space-y-2 px-4 flex-grow">
-                <li><button onclick="switchTab('dashboard')" class="sidebar-icon w-full flex items-center active-tab p-3 rounded-xl text-left"><i data-lucide="layout-dashboard" class="mr-3 h-5 w-5"></i><span>Bảng điều khiển</span></button></li>
-                <li><button onclick="switchTab('data-entry')" class="sidebar-icon w-full flex items-center p-3 rounded-xl text-left"><i data-lucide="file-plus-2" class="mr-3 h-5 w-5"></i><span>1. Nhập liệu & Số hoá</span></button></li>
+                <li><button onclick="switchTab('data-entry')" class="sidebar-icon w-full flex items-center active-tab p-3 rounded-xl text-left"><i data-lucide="file-plus-2" class="mr-3 h-5 w-5"></i><span>1. Nhập liệu & Số hoá</span></button></li>
                 <li><button onclick="switchTab('reconciliation')" class="sidebar-icon w-full flex items-center p-3 rounded-xl text-left"><i data-lucide="shield-check" class="mr-3 h-5 w-5"></i><span>2. Đối chiếu & Rà soát</span></button></li>
                 <li><button onclick="switchTab('tools')" class="sidebar-icon w-full flex items-center p-3 rounded-xl text-left"><i data-lucide="box" class="mr-3 h-5 w-5"></i><span>3. Tiện ích & Báo cáo</span></button></li>
                 <li><button onclick="switchTab('legal')" class="sidebar-icon w-full flex items-center p-3 rounded-xl text-left"><i data-lucide="scale" class="mr-3 h-5 w-5"></i><span>4. Hỏi đáp Pháp luật</span></button></li>
@@ -94,39 +88,26 @@
         </nav>
 
         <main class="flex-1 p-6 sm:p-8 lg:p-10 overflow-y-auto">
-            <div id="dashboard" class="tab-content">
-                <h1 class="text-3xl font-bold">Bảng điều khiển</h1>
-                <p class="mt-2 text-gray-600 dark:text-gray-400">Tổng quan hoạt động và các mục cần chú ý.</p>
-                
-                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg"><p class="text-sm text-gray-500">Tài liệu đã số hoá</p><p id="db-doc-count" class="text-3xl font-bold mt-1">0</p></div>
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg"><p class="text-sm text-gray-500">Lần đối chiếu</p><p id="db-recon-count" class="text-3xl font-bold mt-1">0</p></div>
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg"><p class="text-sm text-gray-500">Báo cáo đã tạo</p><p id="db-report-count" class="text-3xl font-bold mt-1">0</p></div>
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg"><p class="text-sm text-gray-500">Cảnh báo rủi ro</p><p id="db-alert-count" class="text-3xl font-bold mt-1 text-red-500">0</p></div>
-                </div>
-
-                <div class="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <div class="lg:col-span-2 bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg">
-                        <h2 class="text-xl font-semibold mb-4">Phân tích hoạt động</h2>
-                        <canvas id="activityChart"></canvas>
-                    </div>
-                    <div class="lg:col-span-1 bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg">
-                        <h2 class="text-xl font-semibold mb-4">Các mục cần chú ý</h2>
-                        <ul id="attention-list" class="space-y-3"></ul>
-                    </div>
-                </div>
-            </div>
             
-            <!-- Other Tabs (HTML unchanged, content will be rendered by JS) -->
-            <div id="data-entry" class="tab-content hidden">
+            <div id="data-entry" class="tab-content">
                  <h1 class="text-3xl font-bold">1. Nhập liệu & Số hoá Chứng từ</h1>
-                 <p class="mt-2 text-gray-600 dark:text-gray-400">Sử dụng AI để tự động bóc tách thông tin từ hoá đơn, hợp đồng.</p>
+                 <p class="mt-2 text-gray-600 dark:text-gray-400">Tải lên, quản lý hoá đơn, hợp đồng và các chứng từ liên quan.</p>
                  <div class="mt-8 bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg">
-                    <h2 class="text-xl font-semibold">Tải lên chứng từ cần xử lý</h2>
-                    <button class="mt-4 w-full text-center border-2 border-dashed dark:border-gray-600 rounded-xl p-12 hover:bg-gray-50 dark:hover:bg-gray-700/50">
-                        <i data-lucide="scan-line" class="w-16 h-16 text-indigo-500 mx-auto"></i>
-                        <p class="mt-4 font-semibold text-lg">Quét và bóc tách dữ liệu với OCR</p>
-                    </button>
+                    <h2 class="text-xl font-semibold">Tải lên chứng từ mới</h2>
+                    <div id="upload-area" class="mt-4 w-full text-center border-2 border-dashed dark:border-gray-600 rounded-xl p-12 hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer">
+                        <input type="file" id="document-uploader" class="hidden">
+                        <label for="document-uploader" class="cursor-pointer">
+                            <i data-lucide="upload-cloud" class="w-16 h-16 text-indigo-500 mx-auto"></i>
+                            <p class="mt-4 font-semibold text-lg">Chọn hoặc kéo thả file vào đây</p>
+                            <p class="text-sm text-gray-500">Hỗ trợ PDF, PNG, JPG, DOCX...</p>
+                        </label>
+                    </div>
+                    <div id="upload-progress" class="hidden mt-4 text-center">
+                        <div class="flex items-center justify-center gap-2">
+                            <div class="loader"></div>
+                            <span id="upload-status-text">Đang tải file lên...</span>
+                        </div>
+                    </div>
                  </div>
                  <div class="mt-8 bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg">
                     <h2 class="text-xl font-semibold mb-4">Danh sách tài liệu đã xử lý</h2>
@@ -136,15 +117,22 @@
 
             <div id="reconciliation" class="tab-content hidden">
                  <h1 class="text-3xl font-bold">2. Đối chiếu & Rà soát</h1>
-                 <p class="mt-2 text-gray-600 dark:text-gray-400">Tải lên các bảng tính, AI sẽ tự động so khớp theo yêu cầu.</p>
-                 <div class="mt-8 bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg">
+                 <p class="mt-2 text-gray-600 dark:text-gray-400">Nhập đường dẫn thư mục Google Drive và yêu cầu AI đối chiếu, rà soát.</p>
+                 <form id="reconciliation-form" class="mt-8 bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg">
                     <h2 class="text-xl font-semibold">Tạo phiên đối chiếu mới</h2>
-                    <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-                        <div><label class="font-medium">Tài liệu cần đối chiếu</label><input type="file" multiple class="mt-2 custom-file-input w-full"></div>
-                        <div><label class="font-medium">Yêu cầu đối chiếu cụ thể</label><textarea class="mt-2 w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600 text-sm" rows="3" placeholder="Ví dụ: Đối chiếu chéo Bảng kê mua vào và Sao kê ngân hàng..."></textarea></div>
+                    <div class="mt-4 grid grid-cols-1 gap-6">
+                        <div>
+                            <label for="recon-folder-url" class="font-medium">Đường dẫn thư mục Google Drive</label>
+                            <input type="url" id="recon-folder-url" required class="mt-2 w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600 text-sm" placeholder="https://drive.google.com/drive/folders/...">
+                        </div>
+                        <div>
+                            <label for="recon-prompt" class="font-medium">Yêu cầu đối chiếu</label>
+                            <textarea id="recon-prompt" required class="mt-2 w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600 text-sm" rows="3" placeholder="Ví dụ: Đối chiếu chéo Bảng kê mua vào và Sao kê ngân hàng..."></textarea>
+                        </div>
                     </div>
-                    <button class="mt-4 w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold">Bắt đầu Đối chiếu</button>
-                 </div>
+                    <div id="recon-error" class="text-red-500 text-sm text-center mt-4"></div>
+                    <button type="submit" class="mt-4 w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold flex items-center justify-center">Bắt đầu Đối chiếu</button>
+                 </form>
                  <div class="mt-8 bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg">
                     <h2 class="text-xl font-semibold mb-4">Lịch sử các lần đối chiếu</h2>
                     <div id="reconciliation-log"></div>
@@ -156,21 +144,23 @@
                  <div class="mt-8 bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg">
                     <h2 class="text-xl font-semibold mb-4">Công cụ tính toán nhanh</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <button onclick="openModal('gross-net-modal')" class="text-left p-4 border dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700"><h3 class="font-semibold">Quy đổi lương Gross-Net</h3></button>
-                        <button onclick="openModal('late-payment-modal')" class="text-left p-4 border dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700"><h3 class="font-semibold">Tính lãi chậm nộp</h3></button>
-                        <button onclick="openModal('depreciation-modal')" class="text-left p-4 border dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700"><h3 class="font-semibold">Trích khấu hao TSCĐ</h3></button>
+                        <button onclick="openModal('gross-net-modal')" class="text-left p-4 border dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700"><h3 class="font-semibold">Quy đổi lương Gross-Net</h3><p class="text-xs text-gray-500 mt-1">Tính lương thực nhận từ lương tổng.</p></button>
+                        <button onclick="openModal('late-payment-modal')" class="text-left p-4 border dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700"><h3 class="font-semibold">Tính lãi chậm nộp</h3><p class="text-xs text-gray-500 mt-1">Xác định tiền phạt theo quy định.</p></button>
+                        <button onclick="openModal('depreciation-modal')" class="text-left p-4 border dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700"><h3 class="font-semibold">Trích khấu hao TSCĐ</h3><p class="text-xs text-gray-500 mt-1">Theo phương pháp đường thẳng.</p></button>
+                        <button onclick="openModal('cit-estimate-modal')" class="text-left p-4 border dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700"><h3 class="font-semibold">Ước tính Thuế TNDN</h3><p class="text-xs text-gray-500 mt-1">Tạm tính thuế TNDN phải nộp.</p></button>
+                        <button onclick="openModal('dependent-deduction-modal')" class="text-left p-4 border dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700"><h3 class="font-semibold">Tính giảm trừ gia cảnh</h3><p class="text-xs text-gray-500 mt-1">Tính tổng mức giảm trừ cho bản thân và người phụ thuộc.</p></button>
+                        <button onclick="openModal('invoice-check-modal')" class="text-left p-4 border dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700"><h3 class="font-semibold">Kiểm tra hoá đơn</h3><p class="text-xs text-gray-500 mt-1">Kiểm tra tổng tiền và VAT hợp lệ.</p></button>
                     </div>
                  </div>
-                 <div class="mt-8 bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg">
+                 <form id="report-form" class="mt-8 bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg">
                     <h2 class="text-xl font-semibold">Tạo tài liệu / báo cáo mới với AI</h2>
-                     <label class="mt-4 block font-medium">Tài liệu tham khảo (không bắt buộc)</label>
-                    <input type="file" class="mt-2 custom-file-input w-full">
-                    <label class="mt-4 block font-medium">Yêu cầu AI tạo tài liệu</label>
-                    <textarea class="mt-2 w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600" rows="3" placeholder="Ví dụ: Dựa trên Bảng kê mua vào, tạo file Excel phân tích chi phí theo từng nhà cung cấp."></textarea>
-                    <button class="mt-4 w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold">Tạo tài liệu</button>
-                 </div>
+                    <label for="report-prompt" class="mt-4 block font-medium">Yêu cầu AI tạo tài liệu</label>
+                    <textarea id="report-prompt" required class="mt-2 w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600" rows="3" placeholder="Ví dụ: Dựa trên Bảng kê mua vào, tạo file Excel phân tích chi phí theo từng nhà cung cấp."></textarea>
+                    <div id="report-error" class="text-red-500 text-sm text-center mt-4"></div>
+                    <button type="submit" class="mt-4 w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold flex items-center justify-center">Tạo tài liệu</button>
+                 </form>
                  <div class="mt-8 bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg">
-                    <h2 class="text-xl font-semibold mb-4">Lịch sử hoạt động</h2>
+                    <h2 class="text-xl font-semibold mb-4">Lịch sử các tài liệu đã tạo</h2>
                     <div id="tools-log"></div>
                  </div>
             </div>
@@ -192,55 +182,164 @@
 
     <!-- Modals -->
     <div id="modal-container">
-        <!-- Modals for calculators... -->
+        <!-- Edit Document Modal -->
+        <div id="edit-doc-modal" class="modal-backdrop hidden">
+            <div class="modal w-full max-w-lg bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-xl font-semibold">Chỉnh sửa thông tin tài liệu</h2>
+                    <button onclick="closeEditModal()"><i data-lucide="x"></i></button>
+                </div>
+                <form id="edit-doc-form" class="mt-4 space-y-4 text-sm">
+                    <input type="hidden" id="edit-doc-id">
+                    <div>
+                        <label for="edit-doc-name" class="font-medium">Tên tài liệu</label>
+                        <input type="text" id="edit-doc-name" required class="mt-1 w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600">
+                    </div>
+                    <div>
+                        <label for="edit-doc-notes" class="font-medium">Ghi chú</label>
+                        <textarea id="edit-doc-notes" rows="3" class="mt-1 w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600"></textarea>
+                    </div>
+                    <div id="edit-error" class="text-red-500 text-sm"></div>
+                    <div class="flex justify-end pt-2">
+                        <button type="button" onclick="closeEditModal()" class="px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 mr-2">Huỷ</button>
+                        <button type="submit" class="bg-indigo-600 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-indigo-700 flex items-center justify-center w-32">Lưu thay đổi</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Edit Reconciliation Modal -->
+        <div id="edit-recon-modal" class="modal-backdrop hidden">
+            <div class="modal w-full max-w-lg bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-xl font-semibold">Chỉnh sửa phiên đối chiếu</h2>
+                    <button onclick="closeEditReconModal()"><i data-lucide="x"></i></button>
+                </div>
+                <form id="edit-recon-form" class="mt-4 space-y-4 text-sm">
+                    <input type="hidden" id="edit-recon-id">
+                    <div>
+                        <label for="edit-recon-folder-url" class="font-medium">Đường dẫn thư mục Google Drive</label>
+                        <input type="url" id="edit-recon-folder-url" required class="mt-1 w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600">
+                    </div>
+                    <div>
+                        <label for="edit-recon-prompt" class="font-medium">Yêu cầu đối chiếu</label>
+                        <textarea id="edit-recon-prompt" required rows="3" class="mt-1 w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600"></textarea>
+                    </div>
+                    <div id="edit-recon-error" class="text-red-500 text-sm"></div>
+                    <div class="flex justify-end pt-2">
+                        <button type="button" onclick="closeEditReconModal()" class="px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 mr-2">Huỷ</button>
+                        <button type="submit" class="bg-indigo-600 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-indigo-700 flex items-center justify-center w-32">Lưu thay đổi</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Edit Report Modal -->
+        <div id="edit-report-modal" class="modal-backdrop hidden">
+            <div class="modal w-full max-w-lg bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-xl font-semibold">Chỉnh sửa yêu cầu tạo tài liệu</h2>
+                    <button onclick="closeEditReportModal()"><i data-lucide="x"></i></button>
+                </div>
+                <form id="edit-report-form" class="mt-4 space-y-4 text-sm">
+                    <input type="hidden" id="edit-report-id">
+                    <div>
+                        <label for="edit-report-prompt" class="font-medium">Yêu cầu</label>
+                        <textarea id="edit-report-prompt" required rows="3" class="mt-1 w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600"></textarea>
+                    </div>
+                     <div>
+                        <label for="edit-report-result" class="font-medium">Kết quả (URL)</label>
+                        <input type="url" id="edit-report-result" required class="mt-1 w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600">
+                    </div>
+                    <div id="edit-report-error" class="text-red-500 text-sm"></div>
+                    <div class="flex justify-end pt-2">
+                        <button type="button" onclick="closeEditReportModal()" class="px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 mr-2">Huỷ</button>
+                        <button type="submit" class="bg-indigo-600 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-indigo-700 flex items-center justify-center w-32">Lưu thay đổi</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Delete Confirmation Modal -->
+        <div id="delete-confirm-modal" class="modal-backdrop hidden">
+            <div class="modal w-full max-w-md bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6">
+                 <div class="flex justify-between items-center">
+                    <h2 class="text-xl font-semibold">Xác nhận xoá</h2>
+                    <button onclick="closeDeleteConfirmModal()"><i data-lucide="x"></i></button>
+                </div>
+                <p class="mt-4 text-gray-600 dark:text-gray-400">Bạn có chắc chắn muốn xoá mục này không? Hành động này không thể hoàn tác.</p>
+                <div class="mt-6 flex justify-end space-x-2">
+                    <button onclick="closeDeleteConfirmModal()" class="px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">Huỷ</button>
+                    <button id="confirm-delete-btn" class="bg-red-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-red-700">Xoá</button>
+                </div>
+            </div>
+        </div>
+        <!-- Calculator Modals -->
+        <div id="gross-net-modal" class="modal-backdrop hidden"><div class="modal w-full max-w-lg bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6"><div class="flex justify-between items-center"><h2 class="text-xl font-semibold">Quy đổi lương Gross sang Net</h2><button onclick="closeModal('gross-net-modal')"><i data-lucide="x"></i></button></div><div class="mt-4 space-y-4 text-sm"><div><label>Lương Gross (VND/tháng)</label><input type="number" id="gn-gross" class="mt-1 w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600" placeholder="VD: 25000000"></div><div><label>Số người phụ thuộc</label><input type="number" id="gn-dependents" class="mt-1 w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600" value="0"></div><button id="gn-calc-btn" class="!mt-6 w-full bg-indigo-600 text-white py-2 rounded-lg font-semibold">Tính</button></div><div id="gn-result" class="mt-4 pt-4 border-t dark:border-gray-600 text-sm space-y-1"></div></div></div>
+        <div id="late-payment-modal" class="modal-backdrop hidden"><div class="modal w-full max-w-md bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6"><div class="flex justify-between items-center"><h2 class="text-xl font-semibold">Tính lãi chậm nộp</h2><button onclick="closeModal('late-payment-modal')"><i data-lucide="x"></i></button></div><div class="mt-4 space-y-4 text-sm"><div><label>Số tiền thuế chậm nộp</label><input type="number" id="lp-amount" class="mt-1 w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600"></div><div><label>Số ngày chậm nộp</label><input type="number" id="lp-days" class="mt-1 w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600"></div><button id="lp-calc-btn" class="!mt-6 w-full bg-indigo-600 text-white py-2 rounded-lg font-semibold">Tính</button></div><div class="mt-4 pt-4 border-t dark:border-gray-600"><p>Tiền lãi phải nộp: <span id="lp-result" class="font-bold text-red-600 text-lg">0 VND</span></p></div></div></div>
+        <div id="depreciation-modal" class="modal-backdrop hidden"><div class="modal w-full max-w-md bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6"><div class="flex justify-between items-center"><h2 class="text-xl font-semibold">Tính khấu hao TSCĐ</h2><button onclick="closeModal('depreciation-modal')"><i data-lucide="x"></i></button></div><div class="mt-4 space-y-4 text-sm"><div><label>Nguyên giá tài sản</label><input type="number" id="dp-cost" class="mt-1 w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600"></div><div><label>Thời gian trích khấu hao (tháng)</label><input type="number" id="dp-months" class="mt-1 w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600"></div><button id="dp-calc-btn" class="!mt-6 w-full bg-indigo-600 text-white py-2 rounded-lg font-semibold">Tính</button></div><div class="mt-4 pt-4 border-t dark:border-gray-600"><p>Mức khấu hao/tháng: <span id="dp-result" class="font-bold text-blue-600 text-lg">0 VND</span></p></div></div></div>
+        <div id="cit-estimate-modal" class="modal-backdrop hidden"><div class="modal w-full max-w-md bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6"><div class="flex justify-between items-center"><h2 class="text-xl font-semibold">Ước tính Thuế TNDN</h2><button onclick="closeModal('cit-estimate-modal')"><i data-lucide="x"></i></button></div><div class="mt-4 space-y-4 text-sm"><div><label>Tổng doanh thu</label><input type="number" id="cit-revenue" class="mt-1 w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600"></div><div><label>Tổng chi phí hợp lệ</label><input type="number" id="cit-expense" class="mt-1 w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600"></div><button id="cit-calc-btn" class="!mt-6 w-full bg-indigo-600 text-white py-2 rounded-lg font-semibold">Tính</button></div><div class="mt-4 pt-4 border-t dark:border-gray-600"><p>Thuế TNDN tạm tính (20%): <span id="cit-result" class="font-bold text-green-600 text-lg">0 VND</span></p></div></div></div>
+        <div id="dependent-deduction-modal" class="modal-backdrop hidden"><div class="modal w-full max-w-md bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6"><div class="flex justify-between items-center"><h2 class="text-xl font-semibold">Tính giảm trừ gia cảnh</h2><button onclick="closeModal('dependent-deduction-modal')"><i data-lucide="x"></i></button></div><div class="mt-4 space-y-4 text-sm"><div><label>Số người phụ thuộc</label><input type="number" id="dd-dependents" class="mt-1 w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600" value="0"></div><div><label>Số tháng tính giảm trừ</label><input type="number" id="dd-months" class="mt-1 w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600" value="12"></div><button id="dd-calc-btn" class="!mt-6 w-full bg-indigo-600 text-white py-2 rounded-lg font-semibold">Tính</button></div><div class="mt-4 pt-4 border-t dark:border-gray-600"><p>Tổng mức giảm trừ: <span id="dd-result" class="font-bold text-purple-600 text-lg">0 VND</span></p></div></div></div>
+        <div id="invoice-check-modal" class="modal-backdrop hidden"><div class="modal w-full max-w-md bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6"><div class="flex justify-between items-center"><h2 class="text-xl font-semibold">Kiểm tra hoá đơn</h2><button onclick="closeModal('invoice-check-modal')"><i data-lucide="x"></i></button></div><div class="mt-4 space-y-4 text-sm"><div><label>Thành tiền (chưa VAT)</label><input type="number" id="ic-pretax" class="mt-1 w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600"></div><div><label>Tiền thuế GTGT</label><input type="number" id="ic-vat" class="mt-1 w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600"></div><div><label>Tổng tiền thanh toán</label><input type="number" id="ic-total" class="mt-1 w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600"></div><button id="ic-calc-btn" class="!mt-6 w-full bg-indigo-600 text-white py-2 rounded-lg font-semibold">Kiểm tra</button></div><div id="ic-result" class="mt-4 pt-4 border-t dark:border-gray-600 text-center font-semibold"></div></div></div>
     </div>
-    <script>
-        // --- MOCK DATABASE ---
-        const db = {
-            users: [
-                { id: 'admin01', email: 'admin@tax.ai', password: 'admin', role: 'Admin', name: 'Administrator' },
-                { id: 'user01', email: 'user1@company.com', password: 'user1', role: 'User', name: 'Nguyễn Văn A' },
-                { id: 'user02', email: 'user2@company.com', password: 'user2', role: 'User', name: 'Trần Thị B' }
-            ],
-            documents: [
-                { id: 'd01', userId: 'user01', name: 'HD_00123_Viettel.pdf', type: 'Hoá đơn GTGT', date: '2025-09-10T09:15:00Z', status: 'Thành công' },
-                { id: 'd02', userId: 'user01', name: 'Hop_dong_thue_van_phong.docx', type: 'Hợp đồng', date: '2025-09-10T09:18:00Z', status: 'Thành công' },
-                { id: 'd03', userId: 'user02', name: 'Invoice_FPT_Telecom.pdf', type: 'Hoá đơn GTGT', date: '2025-09-11T09:00:00Z', status: 'Thành công' },
-                 { id: 'd04', userId: 'user01', name: 'Sao_ke_VCB_T8.xlsx', type: 'Sao kê NH', date: '2025-09-01T11:00:00Z', status: 'Thành công' },
-            ],
-            reconciliations: [
-                { id: 'r01', userId: 'user01', name: 'Đối chiếu Sao kê & Bảng kê T8', date: '2025-09-10T14:30:00Z', request: 'Đối chiếu các giao dịch trên 20 triệu...', result: 'Phát hiện 2 giao dịch không khớp.', status: 'Cảnh báo' },
-                { id: 'r02', userId: 'user02', name: 'Rà soát chi phí tiếp khách Q3', date: '2025-09-11T11:00:00Z', request: 'Tìm chi phí tiếp khách vượt định mức.', result: 'Cảnh báo: Chi phí vượt 15%.', status: 'Cảnh báo' }
-            ],
-            reports: [
-                { id: 'rep01', userId: 'user01', name: 'Phan_tich_chi_phi_NCC.xlsx', date: '2025-09-11T15:00:00Z' }
-            ],
-            attentionItems: [
-                { userId: 'user01', text: 'Hợp đồng thuê văn phòng sắp hết hạn (còn 20 ngày).', level: 'warning' },
-                { userId: 'user01', text: 'Đối chiếu T8 phát hiện 2 giao dịch không khớp.', level: 'danger' },
-                { userId: 'user02', text: 'Chi phí tiếp khách Quý 3 vượt định mức 15%.', level: 'danger' },
-            ]
-        };
-
+        <script>
         // --- APP STATE ---
         let currentUser = null;
         let activityChart = null;
+        let chatThreadId = null; 
+        const baserowToken = 'GeVHAZ27yVy90jfDcU2bpOj8eeOu9wYT';
+        const userTableId = '844';
+        const documentTableId = '862';
+        const reconciliationTableId = '863';
+        const reportTableId = '864';
+        const baserowHost = 'https://aibm.store';
+
 
         // --- AUTHENTICATION ---
         const loginForm = document.getElementById('login-form');
-        loginForm.addEventListener('submit', (e) => {
+        loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-            const user = db.users.find(u => u.email === email && u.password === password);
+            const errorDiv = document.getElementById('login-error');
+            const submitButton = loginForm.querySelector('button[type="submit"]');
 
-            if (user) {
-                currentUser = user;
-                document.getElementById('login-screen').classList.add('hidden');
-                document.getElementById('app-container').classList.remove('hidden');
-                initializeApp();
-            } else {
-                document.getElementById('login-error').textContent = 'Email hoặc mật khẩu không chính xác.';
+            errorDiv.textContent = '';
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<div class="loader mx-auto"></div>';
+
+            try {
+                const response = await fetch(`${baserowHost}/api/database/rows/table/${userTableId}/?user_field_names=true`, {
+                    method: 'GET',
+                    headers: { 'Authorization': `Token ${baserowToken}` }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Lỗi kết nối API: ${response.status}`);
+                }
+
+                const data = await response.json();
+                const apiUser = data.results.find(u => u.email === email && u.pass === password);
+
+                if (apiUser) {
+                    const roleValue = apiUser.role ? apiUser.role.value : 'User';
+                    currentUser = {
+                        baserowId: apiUser.id,
+                        email: apiUser.email,
+                        role: roleValue.charAt(0).toUpperCase() + roleValue.slice(1),
+                        name: apiUser.email.split('@')[0]
+                    };
+                    
+                    document.getElementById('login-screen').classList.add('hidden');
+                    document.getElementById('app-container').classList.remove('hidden');
+                    initializeApp();
+
+                } else {
+                    errorDiv.textContent = 'Email hoặc mật khẩu không chính xác.';
+                }
+            } catch (error) {
+                console.error('Login failed:', error);
+                errorDiv.textContent = error.message;
+            } finally {
+                submitButton.disabled = false;
+                submitButton.innerHTML = 'Đăng nhập';
             }
         });
         
@@ -259,8 +358,16 @@
         function initializeApp() {
             document.getElementById('user-name').textContent = currentUser.name;
             document.getElementById('user-role').textContent = currentUser.role;
-            switchTab('dashboard');
+            switchTab('data-entry'); // Start on data-entry page now
             lucide.createIcons();
+            document.getElementById('document-uploader').addEventListener('change', handleFileUpload);
+            document.getElementById('edit-doc-form').addEventListener('submit', handleUpdateDocument);
+            document.getElementById('reconciliation-form').addEventListener('submit', handleReconciliationSubmit);
+            document.getElementById('edit-recon-form').addEventListener('submit', handleUpdateReconciliation);
+            document.getElementById('report-form').addEventListener('submit', handleReportSubmit);
+            document.getElementById('edit-report-form').addEventListener('submit', handleUpdateReport);
+            setupCalculators();
+            chatThreadId = crypto.randomUUID(); // Create a unique ID for the chat session
         }
         
         const switchTab = (tabId) => {
@@ -269,112 +376,700 @@
             document.querySelectorAll('.sidebar-icon').forEach(icon => icon.classList.remove('active-tab'));
             document.querySelector(`button[onclick="switchTab('${tabId}')"]`).classList.add('active-tab');
             
+            if (tabId === 'legal') { // Reset chat when switching to the legal tab for the first time
+                document.getElementById('chat-window').innerHTML = `<div class="flex items-start gap-3"><div class="w-10 h-10 rounded-full bg-indigo-500 flex-shrink-0 flex items-center justify-center"><i data-lucide="bot" class="text-white"></i></div><div class="p-4 rounded-lg bg-gray-100 dark:bg-gray-700 rounded-tl-none"><p>Tôi có thể giúp gì về pháp luật thuế cho bạn?</p></div></div>`;
+                lucide.createIcons();
+            }
+
             // Render content for the selected tab
             switch(tabId) {
-                case 'dashboard': renderDashboard(); break;
-                case 'data-entry': renderDataEntry(); break;
-                case 'reconciliation': renderReconciliation(); break;
-                case 'tools': renderTools(); break;
+                case 'data-entry': fetchAndRenderDocuments(); break;
+                case 'reconciliation': fetchAndRenderReconciliations(); break;
+                case 'tools': fetchAndRenderReports(); break;
             }
-            lucide.createIcons();
         };
 
         // --- RENDER FUNCTIONS ---
-        function renderDashboard() {
-            let docs, recons, reports, alerts;
-            if (currentUser.role === 'Admin') {
-                docs = db.documents;
-                recons = db.reconciliations;
-                reports = db.reports;
-                alerts = db.attentionItems;
-            } else {
-                docs = db.documents.filter(d => d.userId === currentUser.id);
-                recons = db.reconciliations.filter(r => r.userId === currentUser.id);
-                reports = db.reports.filter(r => r.userId === currentUser.id);
-                alerts = db.attentionItems.filter(a => a.userId === currentUser.id);
-            }
-
-            document.getElementById('db-doc-count').textContent = docs.length;
-            document.getElementById('db-recon-count').textContent = recons.length;
-            document.getElementById('db-report-count').textContent = reports.length;
-            document.getElementById('db-alert-count').textContent = alerts.length;
-
-            const attentionList = document.getElementById('attention-list');
-            attentionList.innerHTML = alerts.length > 0 ? alerts.map(item => `
-                <li class="flex items-start text-sm">
-                    <i data-lucide="alert-triangle" class="w-4 h-4 mr-2 mt-0.5 ${item.level === 'danger' ? 'text-red-500' : 'text-yellow-500'} flex-shrink-0"></i>
-                    <span>${item.text}</span>
-                </li>
-            `).join('') : '<p class="text-sm text-gray-500 text-center">Không có mục nào cần chú ý.</p>';
-            
-            // Chart
-            const ctx = document.getElementById('activityChart').getContext('2d');
-            const chartData = {
-                labels: ['Số hoá', 'Đối chiếu', 'Báo cáo'],
-                datasets: [{
-                    label: 'Hoạt động AI',
-                    data: [docs.length, recons.length, reports.length],
-                    backgroundColor: ['#4f46e5', '#f59e0b', '#10b981'],
-                    borderRadius: 5,
-                }]
-            };
-            if(activityChart) { activityChart.destroy(); }
-            activityChart = new Chart(ctx, { type: 'bar', data: chartData, options: { responsive: true, plugins: { legend: { display: false } } } });
-            
-            lucide.createIcons();
+        async function renderDashboard() {
+            // Dashboard is removed, but we can keep the logic for badge counts if needed elsewhere
         }
         
-        function renderDataEntry() {
-            const data = (currentUser.role === 'Admin') ? db.documents : db.documents.filter(d => d.userId === currentUser.id);
+        async function fetchAndRenderDocuments() {
             const tableContainer = document.getElementById('data-entry-table');
-            const userHeader = currentUser.role === 'Admin' ? '<th class="px-6 py-3">User</th>' : '';
+            tableContainer.innerHTML = '<div class="flex justify-center p-8"><div class="loader"></div></div>';
+            try {
+                const response = await fetch(`${baserowHost}/api/database/rows/table/${documentTableId}/?user_field_names=true`, {
+                    headers: { 'Authorization': `Token ${baserowToken}` }
+                });
+                if (!response.ok) throw new Error('Không thể tải dữ liệu chứng từ.');
+
+                const data = await response.json();
+                let documents = data.results;
+
+                if (currentUser.role !== 'Admin') {
+                    documents = documents.filter(doc => 
+                        doc.user && doc.user.some(u => u.id === currentUser.baserowId)
+                    );
+                }
+
+                if (documents.length === 0) {
+                    tableContainer.innerHTML = '<p class="text-center text-sm text-gray-500 py-4">Chưa có tài liệu nào.</p>';
+                    return;
+                }
+
+                tableContainer.innerHTML = `
+                    <table class="w-full text-sm text-left">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th class="px-6 py-3">Tên</th>
+                                <th class="px-6 py-3">Ghi chú</th>
+                                ${currentUser.role === 'Admin' ? '<th class="px-6 py-3">Người dùng</th>' : ''}
+                                <th class="px-6 py-3">File đính kèm</th>
+                                <th class="px-6 py-3">Ngày tạo</th>
+                                <th class="px-6 py-3 text-center">Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>${documents.map(doc => {
+                            const fileInfo = doc.File && doc.File.length > 0 ? 
+                                `<a href="${doc.File[0].url}" target="_blank" class="text-indigo-600 hover:underline">${doc.File[0].visible_name}</a>` : 
+                                'Không có';
+                            const userCell = currentUser.role === 'Admin' ? `<td class="px-6 py-4">${doc.user && doc.user.length > 0 ? doc.user[0].value : 'N/A'}</td>` : '';
+
+                            return `<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <td class="px-6 py-4 font-medium">${doc.Name || '(Không có tên)'}</td>
+                                <td class="px-6 py-4 text-sm text-gray-500">${doc.Notes || ''}</td>
+                                ${userCell}
+                                <td class="px-6 py-4">${fileInfo}</td>
+                                <td class="px-6 py-4">${new Date(doc['Created on']).toLocaleString('vi-VN')}</td>
+                                <td class="px-6 py-4 text-center">
+                                    <button onclick='openEditModal(${JSON.stringify(doc)})' class="text-blue-500 hover:text-blue-700 p-1"><i data-lucide="edit" class="w-4 h-4"></i></button>
+                                    <button onclick="openDeleteConfirmModal(${doc.id}, 'document')" class="text-red-500 hover:text-red-700 p-1"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                                </td>
+                            </tr>`
+                        }).join('')}</tbody>
+                    </table>
+                `;
+                lucide.createIcons();
+            } catch (error) {
+                console.error("Lỗi khi tải danh sách chứng từ:", error);
+                tableContainer.innerHTML = `<p class="text-center text-sm text-red-500">${error.message}</p>`;
+            }
+        }
+
+        async function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const uploadProgress = document.getElementById('upload-progress');
+            const uploadArea = document.getElementById('upload-area');
+            const statusText = document.getElementById('upload-status-text');
             
-            tableContainer.innerHTML = `
-                <table class="w-full text-sm text-left">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr><th class="px-6 py-3">Tên file</th>${userHeader}<th class="px-6 py-3">Loại</th><th class="px-6 py-3">Ngày xử lý</th><th class="px-6 py-3">Trạng thái</th></tr>
-                    </thead>
-                    <tbody>${data.map(doc => {
-                        const userCell = currentUser.role === 'Admin' ? `<td class="px-6 py-4">${db.users.find(u => u.id === doc.userId).name}</td>` : '';
-                        return `<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"><td class="px-6 py-4 font-medium">${doc.name}</td>${userCell}<td class="px-6 py-4">${doc.type}</td><td class="px-6 py-4">${new Date(doc.date).toLocaleString('vi-VN')}</td><td class="px-6 py-4 text-green-600">${doc.status}</td></tr>`
-                    }).join('')}</tbody>
-                </table>
-            `;
-        }
+            uploadArea.classList.add('hidden');
+            uploadProgress.classList.remove('hidden');
 
-        function renderReconciliation() {
-            const data = (currentUser.role === 'Admin') ? db.reconciliations : db.reconciliations.filter(r => r.userId === currentUser.id);
-             const logContainer = document.getElementById('reconciliation-log');
-             if (data.length === 0) {
-                logContainer.innerHTML = '<p class="text-center text-sm text-gray-500">Chưa có hoạt động nào được ghi nhận.</p>';
-                return;
-             }
-             logContainer.innerHTML = data.map(log => {
-                const userName = currentUser.role === 'Admin' ? ` - <strong>${db.users.find(u=>u.id === log.userId).name}</strong>` : '';
-                return `
+            try {
+                statusText.textContent = 'Đang tải file lên...';
+                const formData = new FormData();
+                formData.append('file', file);
+                const uploadResponse = await fetch(`${baserowHost}/api/user-files/upload-file/`, {
+                    method: 'POST',
+                    headers: { 'Authorization': `Token ${baserowToken}` },
+                    body: formData
+                });
+                if (!uploadResponse.ok) throw new Error(`Tải file lên thất bại (${uploadResponse.status})`);
+                const uploadResult = await uploadResponse.json();
+                
+                statusText.textContent = 'Đang tạo bản ghi...';
+                const createRowResponse = await fetch(`${baserowHost}/api/database/rows/table/${documentTableId}/?user_field_names=true`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Token ${baserowToken}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        "Name": file.name,
+                        "File": [{ "name": uploadResult.name }],
+                        "user": [currentUser.baserowId]
+                    })
+                });
+                if (!createRowResponse.ok) throw new Error('Không thể tạo bản ghi mới.');
+                
+                await fetchAndRenderDocuments();
+
+            } catch (error) {
+                console.error("Lỗi trong quá trình tải lên:", error);
+            } finally {
+                uploadArea.classList.remove('hidden');
+                uploadProgress.classList.add('hidden');
+                event.target.value = '';
+            }
+        }
+        
+        async function fetchAndRenderReconciliations() {
+            const logContainer = document.getElementById('reconciliation-log');
+            logContainer.innerHTML = '<div class="flex justify-center p-8"><div class="loader"></div></div>';
+            try {
+                const response = await fetch(`${baserowHost}/api/database/rows/table/${reconciliationTableId}/?user_field_names=true`, {
+                    headers: { 'Authorization': `Token ${baserowToken}` }
+                });
+                if (!response.ok) throw new Error('Không thể tải lịch sử đối chiếu.');
+
+                const data = await response.json();
+                let reconciliations = data.results;
+
+                if (currentUser.role !== 'Admin') {
+                    reconciliations = reconciliations.filter(recon => 
+                        recon.user && recon.user.some(u => u.id === currentUser.baserowId)
+                    );
+                }
+
+                if (reconciliations.length === 0) {
+                    logContainer.innerHTML = '<p class="text-center text-sm text-gray-500">Chưa có hoạt động nào được ghi nhận.</p>';
+                    return;
+                }
+                
+                logContainer.innerHTML = reconciliations.map(log => {
+                    const userCell = currentUser.role === 'Admin' ? `<p class="text-xs text-gray-500 mt-1"><strong>Người tạo:</strong> ${log.user && log.user.length > 0 ? log.user[0].value : 'N/A'}</p>` : '';
+                    return `
                     <div class="p-4 border dark:border-gray-700 rounded-lg mb-4">
-                        <p class="font-semibold text-sm">${log.name}${userName} - <span class="text-gray-500 font-normal">${new Date(log.date).toLocaleString('vi-VN')}</span></p>
-                        <p class="mt-2 text-xs text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-700 p-2 rounded-md">Yêu cầu: "${log.request}"</p>
-                        <details class="mt-2 text-sm"><summary class="cursor-pointer text-indigo-600">Xem kết quả</summary><div class="p-2 mt-2 text-xs border-t dark:border-gray-600">${log.result}</div></details>
-                    </div>`;
-             }).join('');
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="font-semibold text-sm">Đối chiếu ngày: <span class="text-gray-500 font-normal">${new Date(log['Created on']).toLocaleString('vi-VN')}</span></p>
+                                ${userCell}
+                            </div>
+                            <div>
+                                <button onclick='openEditReconModal(${JSON.stringify(log)})' class="text-blue-500 hover:text-blue-700 p-1"><i data-lucide="edit" class="w-4 h-4"></i></button>
+                                <button onclick="openDeleteConfirmModal(${log.id}, 'reconciliation')" class="text-red-500 hover:text-red-700 p-1"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                            </div>
+                        </div>
+                        <p class="mt-2 text-xs text-gray-600 dark:text-gray-400"><strong>URL:</strong> <a href="${log['folder url']}" target="_blank" class="text-indigo-500 hover:underline">${log['folder url']}</a></p>
+                        <p class="mt-2 text-xs text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-700 p-2 rounded-md"><strong>Yêu cầu:</strong> "${log['yêu cầu']}"</p>
+                        <details class="mt-2 text-sm"><summary class="cursor-pointer text-indigo-600">Xem kết quả</summary><div class="p-2 mt-2 text-xs border-t dark:border-gray-600">${log['kết quả'] || 'Chưa có kết quả.'}</div></details>
+                    </div>
+                `}).join('');
+                lucide.createIcons();
+
+            } catch (error) {
+                console.error("Lỗi khi tải lịch sử đối chiếu:", error);
+                logContainer.innerHTML = `<p class="text-center text-sm text-red-500">${error.message}</p>`;
+            }
         }
 
-        function renderTools() {
-             const data = (currentUser.role === 'Admin') ? db.reports : db.reports.filter(r => r.userId === currentUser.id);
-             const logContainer = document.getElementById('tools-log');
-             if (data.length === 0) {
-                logContainer.innerHTML = '<p class="text-center text-sm text-gray-500">Chưa có hoạt động nào được ghi nhận.</p>';
-                return;
-             }
-             logContainer.innerHTML = data.map(log => {
-                const userName = currentUser.role === 'Admin' ? ` - <strong>${db.users.find(u=>u.id === log.userId).name}</strong>` : '';
-                return `<div class="text-sm p-2 border-b dark:border-gray-700">Đã tạo file: <strong>${log.name}</strong>${userName} lúc ${new Date(log.date).toLocaleString('vi-VN')}</div>`;
-             }).join('');
+        async function handleReconciliationSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const submitButton = form.querySelector('button[type="submit"]');
+            const errorDiv = document.getElementById('recon-error');
+            const originalButtonHTML = submitButton.innerHTML;
+            
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<div class="loader mx-auto"></div>';
+            errorDiv.textContent = '';
+
+            const folderUrl = document.getElementById('recon-folder-url').value;
+            const prompt = document.getElementById('recon-prompt').value;
+
+            try {
+                const response = await fetch(`${baserowHost}/api/database/rows/table/${reconciliationTableId}/?user_field_names=true`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Token ${baserowToken}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        "folder url": folderUrl,
+                        "yêu cầu": prompt,
+                        "kết quả": "Đang chờ AI xử lý...",
+                        "user": [currentUser.baserowId]
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error('Reconciliation submission failed:', response.status, errorText);
+                    throw new Error('Gửi yêu cầu thất bại.');
+                }
+                
+                form.reset();
+                await fetchAndRenderReconciliations();
+
+            } catch (error) {
+                console.error("Lỗi khi gửi yêu cầu đối chiếu:", error);
+                errorDiv.textContent = error.message;
+            } finally {
+                submitButton.disabled = false;
+                submitButton.innerHTML = 'Bắt đầu Đối chiếu';
+            }
         }
 
-        // --- Dummy modals and calculators ---
-        const openModal = (id) => alert(`Opening ${id}`);
+        async function handleDeleteDocument(docId) {
+            try {
+                const response = await fetch(`${baserowHost}/api/database/rows/table/${documentTableId}/${docId}/`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': `Token ${baserowToken}` }
+                });
+                if (!response.ok) throw new Error('Xoá tài liệu thất bại.');
+                closeDeleteConfirmModal();
+                await fetchAndRenderDocuments();
+            } catch (error) {
+                console.error("Lỗi khi xoá tài liệu:", error);
+                closeDeleteConfirmModal(); 
+            }
+        }
+
+        async function handleDeleteReconciliation(reconId) {
+             try {
+                const response = await fetch(`${baserowHost}/api/database/rows/table/${reconciliationTableId}/${reconId}/`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': `Token ${baserowToken}` }
+                });
+                if (!response.ok) throw new Error('Xoá phiên đối chiếu thất bại.');
+                closeDeleteConfirmModal();
+                await fetchAndRenderReconciliations();
+            } catch (error) {
+                console.error("Lỗi khi xoá phiên đối chiếu:", error);
+                closeDeleteConfirmModal(); 
+            }
+        }
+
+        function openEditModal(doc) {
+            document.getElementById('edit-doc-id').value = doc.id;
+            document.getElementById('edit-doc-name').value = doc.Name || '';
+            document.getElementById('edit-doc-notes').value = doc.Notes || '';
+            document.getElementById('edit-doc-modal').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function closeEditModal() {
+            document.getElementById('edit-doc-modal').classList.add('hidden');
+            document.getElementById('edit-error').textContent = ''; 
+        }
+
+        function openDeleteConfirmModal(id, type) {
+            const confirmBtn = document.getElementById('confirm-delete-btn');
+            if (type === 'reconciliation') {
+                confirmBtn.onclick = () => handleDeleteReconciliation(id);
+            } else if (type === 'report') {
+                confirmBtn.onclick = () => handleDeleteReport(id);
+            } else {
+                confirmBtn.onclick = () => handleDeleteDocument(id);
+            }
+            document.getElementById('delete-confirm-modal').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function closeDeleteConfirmModal() {
+            document.getElementById('delete-confirm-modal').classList.add('hidden');
+        }
+
+        function openEditReconModal(recon) {
+            document.getElementById('edit-recon-id').value = recon.id;
+            document.getElementById('edit-recon-folder-url').value = recon['folder url'] || '';
+            document.getElementById('edit-recon-prompt').value = recon['yêu cầu'] || '';
+            document.getElementById('edit-recon-modal').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function closeEditReconModal() {
+            document.getElementById('edit-recon-modal').classList.add('hidden');
+            document.getElementById('edit-recon-error').textContent = ''; 
+        }
+        
+        async function handleUpdateDocument(event) {
+            event.preventDefault();
+            const form = event.target;
+            const submitButton = form.querySelector('button[type="submit"]');
+            const errorDiv = document.getElementById('edit-error');
+            const originalButtonHTML = submitButton.innerHTML;
+
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<div class="loader mx-auto"></div>';
+            errorDiv.textContent = '';
+
+            const docId = document.getElementById('edit-doc-id').value;
+            const docName = document.getElementById('edit-doc-name').value;
+            const docNotes = document.getElementById('edit-doc-notes').value;
+
+            try {
+                 const response = await fetch(`${baserowHost}/api/database/rows/table/${documentTableId}/${docId}/?user_field_names=true`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Authorization': `Token ${baserowToken}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        "Name": docName,
+                        "Notes": docNotes
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error('Update failed:', response.status, errorText);
+                    throw new Error(`Cập nhật thất bại (Lỗi ${response.status}). Vui lòng thử lại.`);
+                }
+                
+                closeEditModal();
+                await fetchAndRenderDocuments();
+
+            } catch (error) {
+                 console.error("Lỗi khi cập nhật:", error);
+                 errorDiv.textContent = error.message;
+            } finally {
+                submitButton.disabled = false;
+                submitButton.innerHTML = 'Lưu thay đổi';
+            }
+        }
+
+        async function handleUpdateReconciliation(event) {
+            event.preventDefault();
+            const form = event.target;
+            const submitButton = form.querySelector('button[type="submit"]');
+            const errorDiv = document.getElementById('edit-recon-error');
+            const originalButtonHTML = submitButton.innerHTML;
+
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<div class="loader mx-auto"></div>';
+            errorDiv.textContent = '';
+
+            const reconId = document.getElementById('edit-recon-id').value;
+            const folderUrl = document.getElementById('edit-recon-folder-url').value;
+            const prompt = document.getElementById('edit-recon-prompt').value;
+
+            try {
+                 const response = await fetch(`${baserowHost}/api/database/rows/table/${reconciliationTableId}/${reconId}/?user_field_names=true`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Authorization': `Token ${baserowToken}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        "folder url": folderUrl,
+                        "yêu cầu": prompt
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error('Update failed:', response.status, errorText);
+                    throw new Error(`Cập nhật thất bại (Lỗi ${response.status}).`);
+                }
+                
+                closeEditReconModal();
+                await fetchAndRenderReconciliations();
+
+            } catch (error) {
+                 console.error("Lỗi khi cập nhật phiên đối chiếu:", error);
+                 errorDiv.textContent = error.message;
+            } finally {
+                submitButton.disabled = false;
+                submitButton.innerHTML = 'Lưu thay đổi';
+            }
+        }
+        
+        async function fetchAndRenderReports() {
+            const logContainer = document.getElementById('tools-log');
+            logContainer.innerHTML = '<div class="flex justify-center p-8"><div class="loader"></div></div>';
+            try {
+                const response = await fetch(`${baserowHost}/api/database/rows/table/${reportTableId}/?user_field_names=true`, {
+                    headers: { 'Authorization': `Token ${baserowToken}` }
+                });
+                if (!response.ok) throw new Error('Không thể tải lịch sử tạo tài liệu.');
+
+                const data = await response.json();
+                let reports = data.results;
+
+                if (currentUser.role !== 'Admin') {
+                    reports = reports.filter(r => r.user && r.user.some(u => u.id === currentUser.baserowId));
+                }
+
+                if (reports.length === 0) {
+                    logContainer.innerHTML = '<p class="text-center text-sm text-gray-500">Chưa có hoạt động nào được ghi nhận.</p>';
+                    return;
+                }
+                
+                logContainer.innerHTML = reports.map(log => {
+                    const userCell = currentUser.role === 'Admin' ? `<p class="text-xs text-gray-500 mt-1"><strong>Người tạo:</strong> ${log.user && log.user.length > 0 ? log.user[0].value : 'N/A'}</p>` : '';
+                    return `
+                    <div class="p-4 border dark:border-gray-700 rounded-lg mb-4">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="font-semibold text-sm">Yêu cầu ngày: <span class="text-gray-500 font-normal">${new Date(log['Created on']).toLocaleString('vi-VN')}</span></p>
+                                ${userCell}
+                            </div>
+                            <div>
+                                <button onclick='openEditReportModal(${JSON.stringify(log)})' class="text-blue-500 hover:text-blue-700 p-1"><i data-lucide="edit" class="w-4 h-4"></i></button>
+                                <button onclick="openDeleteConfirmModal(${log.id}, 'report')" class="text-red-500 hover:text-red-700 p-1"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                            </div>
+                        </div>
+                        <p class="mt-2 text-xs text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-700 p-2 rounded-md"><strong>Yêu cầu:</strong> "${log['yêu cầu']}"</p>
+                        <p class="mt-2 text-xs text-gray-600 dark:text-gray-400"><strong>Kết quả:</strong> <a href="${log['kết quả']}" target="_blank" class="text-indigo-500 hover:underline">${log['kết quả']}</a></p>
+                    </div>
+                `}).join('');
+                lucide.createIcons();
+            } catch (error) {
+                console.error("Lỗi khi tải lịch sử báo cáo:", error);
+                logContainer.innerHTML = `<p class="text-center text-sm text-red-500">${error.message}</p>`;
+            }
+        }
+        
+        async function handleReportSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const submitButton = form.querySelector('button[type="submit"]');
+            const errorDiv = document.getElementById('report-error');
+            const originalButtonHTML = submitButton.innerHTML;
+            
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<div class="loader mx-auto"></div>';
+            errorDiv.textContent = '';
+
+            const prompt = document.getElementById('report-prompt').value;
+
+            try {
+                const response = await fetch(`${baserowHost}/api/database/rows/table/${reportTableId}/?user_field_names=true`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Token ${baserowToken}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        "yêu cầu": prompt,
+                        "kết quả": "https://docs.google.com/spreadsheets/d/example", // Placeholder link
+                        "user": [currentUser.baserowId]
+                    })
+                });
+
+                if (!response.ok) throw new Error('Gửi yêu cầu thất bại.');
+                
+                form.reset();
+                await fetchAndRenderReports();
+
+            } catch (error) {
+                console.error("Lỗi khi gửi yêu cầu báo cáo:", error);
+                errorDiv.textContent = error.message;
+            } finally {
+                submitButton.disabled = false;
+                submitButton.innerHTML = 'Tạo tài liệu';
+            }
+        }
+
+        async function handleDeleteReport(reportId) {
+             try {
+                const response = await fetch(`${baserowHost}/api/database/rows/table/${reportTableId}/${reportId}/`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': `Token ${baserowToken}` }
+                });
+                if (!response.ok) throw new Error('Xoá báo cáo thất bại.');
+                closeDeleteConfirmModal();
+                await fetchAndRenderReports();
+            } catch (error) {
+                console.error("Lỗi khi xoá báo cáo:", error);
+                closeDeleteConfirmModal(); 
+            }
+        }
+
+        function openEditReportModal(log) {
+            document.getElementById('edit-report-id').value = log.id;
+            document.getElementById('edit-report-prompt').value = log['yêu cầu'] || '';
+            document.getElementById('edit-report-result').value = log['kết quả'] || '';
+            document.getElementById('edit-report-modal').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function closeEditReportModal() {
+            document.getElementById('edit-report-modal').classList.add('hidden');
+            document.getElementById('edit-report-error').textContent = ''; 
+        }
+
+        async function handleUpdateReport(event) {
+            event.preventDefault();
+            const form = event.target;
+            const submitButton = form.querySelector('button[type="submit"]');
+            const errorDiv = document.getElementById('edit-report-error');
+            const originalButtonHTML = submitButton.innerHTML;
+
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<div class="loader mx-auto"></div>';
+            errorDiv.textContent = '';
+
+            const reportId = document.getElementById('edit-report-id').value;
+            const prompt = document.getElementById('edit-report-prompt').value;
+            const result = document.getElementById('edit-report-result').value;
+
+            try {
+                 const response = await fetch(`${baserowHost}/api/database/rows/table/${reportTableId}/${reportId}/?user_field_names=true`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Authorization': `Token ${baserowToken}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        "yêu cầu": prompt,
+                        "kết quả": result
+                    })
+                });
+
+                if (!response.ok) throw new Error(`Cập nhật thất bại (Lỗi ${response.status}).`);
+                
+                closeEditReportModal();
+                await fetchAndRenderReports();
+
+            } catch (error) {
+                 console.error("Lỗi khi cập nhật báo cáo:", error);
+                 errorDiv.textContent = error.message;
+            } finally {
+                submitButton.disabled = false;
+                submitButton.innerHTML = 'Lưu thay đổi';
+            }
+        }
+
+        function setupCalculators() {
+            const formatCurrency = (value) => new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
+
+            document.getElementById('gn-calc-btn').addEventListener('click', () => {
+                const gross = parseFloat(document.getElementById('gn-gross').value) || 0;
+                const dependents = parseInt(document.getElementById('gn-dependents').value) || 0;
+                const resultDiv = document.getElementById('gn-result');
+                if (gross === 0) { resultDiv.innerHTML = ''; return; }
+                const BHXH = gross * 0.08;
+                const BHYT = gross * 0.015;
+                const BHTN = gross * 0.01;
+                const totalInsurance = BHXH + BHYT + BHTN;
+                const incomeBeforeTax = gross - totalInsurance;
+                const personalDeduction = 11000000;
+                const dependentDeduction = 4400000 * dependents;
+                const totalDeduction = personalDeduction + dependentDeduction;
+                const taxableIncome = Math.max(0, incomeBeforeTax - totalDeduction);
+                let pit = 0;
+                if (taxableIncome > 80000000) pit = 0.35 * (taxableIncome - 80000000) + 18150000;
+                else if (taxableIncome > 52000000) pit = 0.3 * (taxableIncome - 52000000) + 9750000;
+                else if (taxableIncome > 32000000) pit = 0.25 * (taxableIncome - 32000000) + 4750000;
+                else if (taxableIncome > 18000000) pit = 0.2 * (taxableIncome - 18000000) + 1950000;
+                else if (taxableIncome > 10000000) pit = 0.15 * (taxableIncome - 10000000) + 750000;
+                else if (taxableIncome > 5000000) pit = 0.1 * (taxableIncome - 5000000) + 250000;
+                else if (taxableIncome > 0) pit = 0.05 * taxableIncome;
+                const netSalary = gross - totalInsurance - pit;
+                resultDiv.innerHTML = `<p class="flex justify-between"><span>- Bảo hiểm (10.5%):</span> <span>-${formatCurrency(totalInsurance)}</span></p>
+                                       <p class="flex justify-between"><span>- Thuế TNCN:</span> <span>-${formatCurrency(pit)}</span></p>
+                                       <p class="flex justify-between font-bold text-lg mt-2 pt-2 border-t dark:border-gray-600"><span>Lương NET (thực nhận):</span> <span class="text-green-600">${formatCurrency(netSalary)}</span></p>`;
+            });
+
+            document.getElementById('lp-calc-btn').addEventListener('click', () => {
+                const amount = parseFloat(document.getElementById('lp-amount').value) || 0;
+                const days = parseInt(document.getElementById('lp-days').value) || 0;
+                const interest = amount * 0.0003 * days;
+                document.getElementById('lp-result').textContent = formatCurrency(interest);
+            });
+
+            document.getElementById('dp-calc-btn').addEventListener('click', () => {
+                const cost = parseFloat(document.getElementById('dp-cost').value) || 0;
+                const months = parseInt(document.getElementById('dp-months').value) || 1;
+                const depreciation = cost / months;
+                document.getElementById('dp-result').textContent = formatCurrency(depreciation);
+            });
+            
+            document.getElementById('cit-calc-btn').addEventListener('click', () => {
+                const revenue = parseFloat(document.getElementById('cit-revenue').value) || 0;
+                const expense = parseFloat(document.getElementById('cit-expense').value) || 0;
+                const profit = Math.max(0, revenue - expense);
+                const tax = profit * 0.20;
+                document.getElementById('cit-result').textContent = formatCurrency(tax);
+            });
+
+            document.getElementById('dd-calc-btn').addEventListener('click', () => {
+                const dependents = parseInt(document.getElementById('dd-dependents').value) || 0;
+                const months = parseInt(document.getElementById('dd-months').value) || 0;
+                const selfDeduction = 11000000 * months;
+                const dependentDeduction = 4400000 * dependents * months;
+                const total = selfDeduction + dependentDeduction;
+                document.getElementById('dd-result').textContent = formatCurrency(total);
+            });
+            
+            document.getElementById('ic-calc-btn').addEventListener('click', () => {
+                 const pretax = parseFloat(document.getElementById('ic-pretax').value) || 0;
+                 const vat = parseFloat(document.getElementById('ic-vat').value) || 0;
+                 const total = parseFloat(document.getElementById('ic-total').value) || 0;
+                 const resultDiv = document.getElementById('ic-result');
+                 if (pretax === 0 && vat === 0 && total === 0) {
+                     resultDiv.innerHTML = '';
+                     return;
+                 }
+                 const calculatedTotal = pretax + vat;
+                 if (Math.abs(calculatedTotal - total) < 0.01) {
+                     resultDiv.innerHTML = '<span class="text-green-500">HỢP LỆ</span>';
+                 } else {
+                     resultDiv.innerHTML = `<span class="text-red-500">KHÔNG HỢP LỆ</span><p class="text-xs text-gray-500 mt-1">Tổng tính toán: ${formatCurrency(calculatedTotal)}</p>`;
+                 }
+            });
+        }
+
+        const chatForm = document.getElementById('chat-form');
+        chatForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const userInput = document.getElementById('chat-input').value.trim();
+            if (!userInput) return;
+
+            appendChatMessage(userInput, 'user');
+            document.getElementById('chat-input').value = '';
+            
+            const loadingBubble = appendChatMessage('<div class="loader"></div>', 'ai', true);
+            lucide.createIcons();
+
+            try {
+                const response = await fetch('https://aps.aibm.space/webhook/tax1', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        task: 'chatbot',
+                        prompt: userInput,
+                        threadid: chatThreadId
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`Lỗi webhook: ${response.status}`);
+                }
+                
+                const result = await response.json();
+                const aiText = result[0]?.output || "Xin lỗi, tôi chưa thể trả lời câu hỏi này.";
+                
+                loadingBubble.querySelector('.p-4').innerHTML = aiText.replace(/\n/g, '<br>');
+
+            } catch (error) {
+                console.error("Lỗi khi gọi webhook:", error);
+                loadingBubble.querySelector('.p-4').innerHTML = 'Đã có lỗi xảy ra khi kết nối. Vui lòng thử lại.';
+            }
+        });
+
+        function appendChatMessage(message, sender, isLoading = false) {
+            const chatWindow = document.getElementById('chat-window');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `flex items-start gap-3 ${sender === 'user' ? 'justify-end' : ''}`;
+            
+            let bubbleHTML = '';
+            if (sender === 'ai') {
+                bubbleHTML = `<div class="w-10 h-10 rounded-full bg-indigo-500 flex-shrink-0 flex items-center justify-center"><i data-lucide="bot" class="text-white"></i></div>
+                              <div class="p-4 rounded-lg bg-gray-100 dark:bg-gray-700 rounded-tl-none">${message}</div>`;
+            } else {
+                bubbleHTML = `<div class="p-4 rounded-lg bg-indigo-600 text-white rounded-br-none">${message}</div>`;
+            }
+            messageDiv.innerHTML = bubbleHTML;
+            chatWindow.appendChild(messageDiv);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+            
+            if (isLoading) return messageDiv;
+        }
+
+        const openModal = (id) => { 
+            const modal = document.getElementById(id);
+            if (modal) modal.classList.remove('hidden');
+            lucide.createIcons();
+        };
+        const closeModal = (id) => {
+            const modal = document.getElementById(id);
+            if (modal) modal.classList.add('hidden');
+        }
     </script>
 </body>
 </html>
